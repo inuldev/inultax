@@ -22,9 +22,9 @@ export default function Verify() {
           <div className="mb-4 mx-auto flex size-20 items-center justify-center rounded-full bg-blue-100">
             <Mail className="size-12 text-blue-500" />
           </div>
-          <CardTitle className="text-2xl font-bold">Check your Email</CardTitle>
+          <CardTitle className="text-2xl font-bold">Verifikasi Email</CardTitle>
           <CardDescription>
-            We have sent a verification link to your email address.
+            Kami telah mengirimkan link verifikasi ke alamat email Anda.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -32,7 +32,7 @@ export default function Verify() {
             <div className="flex items-center">
               <AlertCircle className="size-5 text-yellow-400" />
               <p className="text-sm font-medium text-yellow-700 ml-3">
-                Be sure to check your spam folder!
+                Pastikan untuk memeriksa folder spam Anda!
               </p>
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function Verify() {
               variant: "outline",
             })}
           >
-            <ArrowLeft className="size-4 mr-2" /> Back to Homepage
+            <ArrowLeft className="size-4 mr-2" /> Beranda
           </Link>
         </CardFooter>
       </Card>

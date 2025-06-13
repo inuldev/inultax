@@ -28,8 +28,8 @@ export default async function Login() {
       <div className="flex h-screen w-full items-center justify-center px-4">
         <Card className="max-w-sm min-w-xs lg:min-w-sm">
           <CardHeader>
-            <CardTitle className="text-2xl">Login</CardTitle>
-            <CardDescription>Enter your email below to login</CardDescription>
+            <CardTitle className="text-2xl">Masuk</CardTitle>
+            <CardDescription>Masukkan email Anda untuk login</CardDescription>
           </CardHeader>
           <CardContent>
             <form
@@ -45,10 +45,10 @@ export default async function Login() {
                   name="email"
                   type="email"
                   required
-                  placeholder="hello@inultax.com"
+                  placeholder="email@inultax.com"
                 />
               </div>
-              <SubmitButton text="Login" />
+              <SubmitButton text="Masuk" />
             </form>
           </CardContent>
         </Card>

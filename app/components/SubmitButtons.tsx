@@ -25,7 +25,7 @@ export function SubmitButton({ text, variant }: iAppProps) {
     <>
       {pending ? (
         <Button disabled className="w-full" variant={variant}>
-          <Loader2 className="size-4 mr-2 animate-spin" /> Please wait...
+          <Loader2 className="size-4 mr-2 animate-spin" /> Harap tunggu...
         </Button>
       ) : (
         <Button type="submit" className="w-full" variant={variant}>
