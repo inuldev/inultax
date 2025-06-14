@@ -136,7 +136,6 @@ export async function GET(
   const pdfBuffer = Buffer.from(pdf.output("arraybuffer"));
 
   //return pdf as download
-
   return new NextResponse(pdfBuffer, {
     headers: {
       "Content-Type": "application/pdf",

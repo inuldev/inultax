@@ -21,6 +21,7 @@ async function getUserData(userId: string) {
 export default async function InvoiceCreationRoute() {
   const session = await requireUser();
   const data = await getUserData(session.user?.id as string);
+
   return (
     <CreateInvoice
       lastName={data?.lastName as string}
