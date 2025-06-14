@@ -125,25 +125,38 @@ export async function sendEditInvoiceEmail(data: {
 export async function sendReminderEmail(data: {
   to: string;
   clientName: string;
+  invoiceNumber: string;
+  invoiceDueDate: string;
+  invoiceAmount: string;
+  invoiceLink: string;
+  daysOverdue: number;
   companyName: string;
-  companyAddress: string;
-  companyCity: string;
-  companyZipCode: string;
-  companyCountry: string;
+  companyEmail: string;
+  companyPhone?: string;
 }) {
   const html = loadTemplate("invoice-reminder-email-template.html", {
     clientName: data.clientName,
+    invoiceNumber: data.invoiceNumber,
+    invoiceDueDate: data.invoiceDueDate,
+    invoiceAmount: data.invoiceAmount,
+    invoiceLink: data.invoiceLink,
+    daysOverdue: data.daysOverdue.toString(),
+    overdueStatus: data.daysOverdue > 0 ? "TERLAMBAT" : "JATUH TEMPO HARI INI",
+    overdueMessage:
+      data.daysOverdue > 0
+        ? `Invoice ini sudah terlambat ${data.daysOverdue} hari dari tanggal jatuh tempo.`
+        : "Invoice ini jatuh tempo hari ini. Mohon segera lakukan pembayaran.",
     companyName: data.companyName,
-    companyAddress: data.companyAddress,
-    companyCity: data.companyCity,
-    companyZipCode: data.companyZipCode,
-    companyCountry: data.companyCountry,
+    companyEmail: data.companyEmail,
+    companyPhone: data.companyPhone || "Tidak tersedia",
   });
 
   const mailOptions = {
     from: process.env.EMAIL_FROM!,
     to: data.to,
-    subject: `Reminder Pembayaran Invoice - ${data.companyName}`,
+    subject: `${
+      data.daysOverdue > 0 ? "URGENT" : ""
+    } Reminder Pembayaran Invoice #${data.invoiceNumber} - ${data.companyName}`,
     html,
     attachments: [getLogoAttachment()],
   };
