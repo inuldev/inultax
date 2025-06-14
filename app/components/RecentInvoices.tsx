@@ -35,26 +35,37 @@ export async function RecentInvoices() {
       <CardHeader>
         <CardTitle>Faktur Terbaru</CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col gap-8">
+      <CardContent className="flex flex-col gap-6">
         {data.map((item) => (
-          <div className="flex items-center gap-4" key={item.id}>
-            <Avatar className="hidden sm:flex size-9">
+          <div
+            className="grid grid-cols-[auto_1fr_auto] items-center gap-3 min-w-0"
+            key={item.id}
+          >
+            <Avatar className="hidden sm:flex size-9 flex-shrink-0">
               <AvatarFallback>{item.clientName.slice(0, 2)}</AvatarFallback>
             </Avatar>
-            <div className="flex flex-col gap-1">
-              <p className="text-sm font-medium leading-none">
+            <div className="flex flex-col gap-1 min-w-0 overflow-hidden">
+              <p
+                className="text-sm font-medium leading-none truncate"
+                title={item.clientName}
+              >
                 {item.clientName}
               </p>
-              <p className="text-sm text-muted-foreground">
+              <p
+                className="text-sm text-muted-foreground truncate"
+                title={item.clientEmail}
+              >
                 {item.clientEmail}
               </p>
             </div>
-            <div className="ml-auto font-medium">
-              +
-              {formatCurrency({
-                amount: item.total,
-                currency: item.currency as "USD" | "IDR",
-              })}
+            <div className="font-medium text-sm flex-shrink-0 text-right">
+              <span className="text-green-600">+</span>
+              <span className="ml-1">
+                {formatCurrency({
+                  amount: item.total,
+                  currency: item.currency as "USD" | "IDR",
+                })}
+              </span>
             </div>
           </div>
         ))}
