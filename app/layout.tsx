@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "InulTax",
-  description: "Aplikasi invoice terbaik untuk kebutuhan bisnis Anda",
+  description: "Platform Invoice Management Terdepan di Indonesia",
   icons: {
     icon: "/logo.svg",
   },
