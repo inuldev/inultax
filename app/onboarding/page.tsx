@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 
-import { requireUser, checkUserOnboardingStatus } from "../utils/hooks";
 import OnboardingForm from "@/app/components/OnboardingForm";
+
+import { requireUser, checkUserOnboardingStatus } from "../utils/hooks";
 
 export default async function Onboarding() {
   // Pastikan user sudah login sebelum mengakses onboarding

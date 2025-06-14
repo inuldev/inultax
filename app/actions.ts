@@ -40,8 +40,6 @@ export async function onboardUser(_prevState: unknown, formData: FormData) {
         address: submission.value.address,
       },
     });
-
-    console.log(`User onboarding completed: ${session.user.email}`);
   } catch (error) {
     console.error("Onboarding error:", error);
     return {
