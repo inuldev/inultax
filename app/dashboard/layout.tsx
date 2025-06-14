@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ReactNode } from "react";
 import { Menu, User2 } from "lucide-react";
+import { redirect } from "next/navigation";
 
 import Logo from "@/public/logo.png";
 import { Button } from "@/components/ui/button";
@@ -24,15 +25,32 @@ import {
 
 import { signOut } from "../utils/auth";
 import { DashboardLinks } from "../components/DashboardLinks";
+import { requireUser, checkUserOnboardingStatus } from "../utils/hooks";
+
+async function checkOnboardingOrRedirect(userId: string) {
+  const { isCompleted } = await checkUserOnboardingStatus(userId);
+
+  if (!isCompleted) {
+    redirect("/onboarding");
+  }
+}
 
 export default async function DashboardLayout({
   children,
 }: {
   children: ReactNode;
 }) {
+  const session = await requireUser();
+
+  if (!session.user?.id) {
+    redirect("/login");
+  }
+
+  await checkOnboardingOrRedirect(session.user.id);
+
   return (
     <>
-      <div className="grid min-h-screen w-full md:gird-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+      <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
         <div className="hidden border-r bg-muted/40 md:block">
           <div className="flex flex-col max-h-screen h-full gap-2">
             <div className="h-14 flex items-center border-b px-4 lg:h-[60px] lg:px-6">

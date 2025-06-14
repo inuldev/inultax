@@ -12,12 +12,21 @@ import {
 
 import { auth, signIn } from "../utils/auth";
 import { SubmitButton } from "../components/SubmitButtons";
+import { checkUserOnboardingStatus } from "../utils/hooks";
 
 export default async function Login() {
   const session = await auth();
 
-  if (session?.user) {
-    redirect("/dashboard");
+  if (session?.user?.id) {
+    // Cek apakah user sudah menyelesaikan onboarding
+    const { isCompleted } = await checkUserOnboardingStatus(session.user.id);
+
+    // Jika sudah lengkap, ke dashboard. Jika belum, ke onboarding
+    if (isCompleted) {
+      redirect("/dashboard");
+    } else {
+      redirect("/onboarding");
+    }
   }
 
   return (

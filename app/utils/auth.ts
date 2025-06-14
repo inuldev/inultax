@@ -178,6 +178,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      // Jika user login berhasil, cek apakah sudah onboarding
+      if (url.startsWith(baseUrl)) {
+        return url;
+      }
+      // Default redirect ke dashboard, nanti akan dicek di dashboard layout
+      return `${baseUrl}/dashboard`;
+    },
   },
   // Event handlers untuk monitoring
   events: {

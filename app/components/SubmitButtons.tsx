@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 
 interface iAppProps {
   text: string;
+  loadingText?: string;
   variant?:
     | "default"
     | "destructive"
@@ -18,14 +19,15 @@ interface iAppProps {
     | undefined;
 }
 
-export function SubmitButton({ text, variant }: iAppProps) {
+export function SubmitButton({ text, loadingText, variant }: iAppProps) {
   const { pending } = useFormStatus();
 
   return (
     <>
       {pending ? (
         <Button disabled className="w-full" variant={variant}>
-          <Loader2 className="size-4 mr-2 animate-spin" /> Harap tunggu...
+          <Loader2 className="size-4 mr-2 animate-spin" />{" "}
+          {loadingText || "Harap tunggu..."}
         </Button>
       ) : (
         <Button type="submit" className="w-full" variant={variant}>
