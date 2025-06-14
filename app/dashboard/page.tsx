@@ -29,9 +29,9 @@ export default async function DashboardRoute() {
     <>
       {data.length < 1 ? (
         <EmptyState
-          title="No invoices found"
-          description="Create an invoice to see it right here"
-          buttontext="Create Invoice"
+          title="Belum ada faktur"
+          description="Buat faktur untuk melihatnya di sini"
+          buttontext="Buat Faktur"
           href="/dashboard/invoices/create"
         />
       ) : (

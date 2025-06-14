@@ -45,9 +45,9 @@ export default async function DeleteInvoiceRoute({
     <div className="flex flex-1 justify-center items-center">
       <Card className="max-w-[500px]">
         <CardHeader>
-          <CardTitle>Delete Invoice</CardTitle>
+          <CardTitle>Hapus Faktur</CardTitle>
           <CardDescription>
-            Are you sure that you want to delete this invoice?
+            Apakah Anda yakin ingin menghapus faktur ini?
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -58,7 +58,7 @@ export default async function DeleteInvoiceRoute({
             className={buttonVariants({ variant: "outline" })}
             href="/dashboard/invoices"
           >
-            Cancel
+            Batal
           </Link>
           <form
             action={async () => {
@@ -66,7 +66,7 @@ export default async function DeleteInvoiceRoute({
               await DeleteInvoice(invoiceId);
             }}
           >
-            <SubmitButton text="Delete Invoice" variant={"destructive"} />
+            <SubmitButton text="Hapus Faktur" variant={"destructive"} />
           </form>
         </CardFooter>
       </Card>

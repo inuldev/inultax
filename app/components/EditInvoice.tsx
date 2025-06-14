@@ -83,7 +83,7 @@ export function EditInvoice({ data }: iAppProps) {
                 name={fields.invoiceName.name}
                 key={fields.invoiceName.key}
                 defaultValue={data.invoiceName}
-                placeholder="Test 123"
+                placeholder="Nama Faktur"
               />
             </div>
             <p className="text-sm text-red-500">{fields.invoiceName.errors}</p>
@@ -91,7 +91,7 @@ export function EditInvoice({ data }: iAppProps) {
 
           <div className="grid md:grid-cols-3 gap-6 mb-6">
             <div>
-              <Label>Invoice No.</Label>
+              <Label>No. Faktur</Label>
               <div className="flex">
                 <span className="px-3 border border-r-0 rounded-l-md bg-muted flex items-center">
                   #
@@ -110,7 +110,7 @@ export function EditInvoice({ data }: iAppProps) {
             </div>
 
             <div>
-              <Label>Currency</Label>
+              <Label>Mata Uang</Label>
               <Select
                 defaultValue="IDR"
                 name={fields.currency.name}
@@ -118,7 +118,7 @@ export function EditInvoice({ data }: iAppProps) {
                 onValueChange={(value) => setCurrency(value)}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select Currency" />
+                  <SelectValue placeholder="Pilih Mata Uang" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="USD">
@@ -133,17 +133,17 @@ export function EditInvoice({ data }: iAppProps) {
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
-              <Label>From</Label>
+              <Label>Dari</Label>
               <div className="space-y-1">
                 <Input
                   name={fields.fromName.name}
                   key={fields.fromName.key}
-                  placeholder="Your Name"
+                  placeholder="Nama Anda"
                   defaultValue={data.fromName}
                 />
                 <p className="text-red-500 text-sm">{fields.fromName.errors}</p>
                 <Input
-                  placeholder="Your Email"
+                  placeholder="Email Anda"
                   name={fields.fromEmail.name}
                   key={fields.fromEmail.key}
                   defaultValue={data.fromEmail}
@@ -152,7 +152,7 @@ export function EditInvoice({ data }: iAppProps) {
                   {fields.fromEmail.errors}
                 </p>
                 <Input
-                  placeholder="Your Address"
+                  placeholder="Alamat Anda"
                   name={fields.fromAddress.name}
                   key={fields.fromAddress.key}
                   defaultValue={data.fromAddress}
@@ -164,13 +164,13 @@ export function EditInvoice({ data }: iAppProps) {
             </div>
 
             <div>
-              <Label>To</Label>
+              <Label>Kepada</Label>
               <div className="space-y-1">
                 <Input
                   name={fields.clientName.name}
                   key={fields.clientName.key}
                   defaultValue={data.clientName}
-                  placeholder="Client Name"
+                  placeholder="Nama Klien"
                 />
                 <p className="text-red-500 text-sm">
                   {fields.clientName.errors}
@@ -179,7 +179,7 @@ export function EditInvoice({ data }: iAppProps) {
                   name={fields.clientEmail.name}
                   key={fields.clientEmail.key}
                   defaultValue={data.clientEmail}
-                  placeholder="Client Email"
+                  placeholder="Email Klien"
                 />
                 <p className="text-red-500 text-sm">
                   {fields.clientEmail.errors}
@@ -188,7 +188,7 @@ export function EditInvoice({ data }: iAppProps) {
                   name={fields.clientAddress.name}
                   key={fields.clientAddress.key}
                   defaultValue={data.clientAddress}
-                  placeholder="Client Address"
+                  placeholder="Alamat Klien"
                 />
                 <p className="text-red-500 text-sm">
                   {fields.clientAddress.errors}
@@ -200,7 +200,7 @@ export function EditInvoice({ data }: iAppProps) {
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
               <div>
-                <Label>Date</Label>
+                <Label>Tanggal</Label>
               </div>
               <Popover>
                 <PopoverTrigger asChild>
@@ -214,7 +214,7 @@ export function EditInvoice({ data }: iAppProps) {
                         dateStyle: "long",
                       }).format(selectedDate)
                     ) : (
-                      <span>Pick a Date</span>
+                      <span>Pilih Tanggal</span>
                     )}
                   </Button>
                 </PopoverTrigger>
@@ -231,20 +231,20 @@ export function EditInvoice({ data }: iAppProps) {
             </div>
 
             <div>
-              <Label>Invoice Due</Label>
+              <Label>Jatuh Tempo</Label>
               <Select
                 name={fields.dueDate.name}
                 key={fields.dueDate.key}
                 defaultValue={data.dueDate.toString()}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select due date" />
+                  <SelectValue placeholder="Pilih jatuh tempo" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="0">Due on receipt</SelectItem>
-                  <SelectItem value="7">Net 7</SelectItem>
-                  <SelectItem value="15">Net 15</SelectItem>
-                  <SelectItem value="30">Net 30</SelectItem>
+                  <SelectItem value="0">Bayar saat terima</SelectItem>
+                  <SelectItem value="7">7 hari</SelectItem>
+                  <SelectItem value="15">15 hari</SelectItem>
+                  <SelectItem value="30">30 hari</SelectItem>
                 </SelectContent>
               </Select>
               <p className="text-red-500 text-sm">{fields.dueDate.errors}</p>
@@ -253,10 +253,10 @@ export function EditInvoice({ data }: iAppProps) {
 
           <div>
             <div className="grid grid-cols-12 gap-4 font-medium">
-              <p className="col-span-6">Description</p>
-              <p className="col-span-2">Quantity</p>
-              <p className="col-span-2">Rate</p>
-              <p className="col-span-2">Amount</p>
+              <p className="col-span-6">Deskripsi</p>
+              <p className="col-span-2">Kuantitas</p>
+              <p className="col-span-2">Harga</p>
+              <p className="col-span-2">Jumlah</p>
             </div>
 
             <div className="grid grid-cols-12 gap-4 mb-4">
@@ -265,7 +265,7 @@ export function EditInvoice({ data }: iAppProps) {
                   name={fields.invoiceItemDescription.name}
                   key={fields.invoiceItemDescription.key}
                   defaultValue={data.invoiceItemDescription}
-                  placeholder="Item name & description"
+                  placeholder="Nama & deskripsi item"
                 />
                 <p className="text-red-500 text-sm">
                   {fields.invoiceItemDescription.errors}
@@ -334,19 +334,19 @@ export function EditInvoice({ data }: iAppProps) {
           </div>
 
           <div>
-            <Label>Note (Optional)</Label>
+            <Label>Catatan (Opsional)</Label>
             <Textarea
               name={fields.note.name}
               key={fields.note.key}
               defaultValue={data.note ?? undefined}
-              placeholder="Add your Note/s right here..."
+              placeholder="Tambahkan catatan Anda di sini..."
             />
             <p className="text-red-500 text-sm">{fields.note.errors}</p>
           </div>
 
           <div className="flex items-center justify-end mt-6">
             <div>
-              <SubmitButton text="Update Invoice" />
+              <SubmitButton text="Perbarui Faktur" />
             </div>
           </div>
         </form>

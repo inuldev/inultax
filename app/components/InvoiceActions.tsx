@@ -34,9 +34,9 @@ export function InvoiceActions({ id, status }: iAppProps) {
         },
       }),
       {
-        loading: "Sending reminder email...",
-        success: "Reminder email sent successfully",
-        error: "Failed to send reminder email",
+        loading: "Mengirim email pengingat...",
+        success: "Email pengingat berhasil dikirim",
+        error: "Gagal mengirim email pengingat",
       }
     );
   };
@@ -51,26 +51,26 @@ export function InvoiceActions({ id, status }: iAppProps) {
       <DropdownMenuContent align="end">
         <DropdownMenuItem asChild>
           <Link href={`/dashboard/invoices/${id}`}>
-            <Pencil className="size-4 mr-2" /> Edit Invoice
+            <Pencil className="size-4 mr-2" /> Edit Faktur
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href={`/api/invoice/${id}`} target="_blank">
-            <DownloadCloudIcon className="size-4 mr-2" /> Download Invoice
+            <DownloadCloudIcon className="size-4 mr-2" /> Unduh Faktur
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={handleSendReminder}>
-          <Mail className="size-4 mr-2" /> Reminder Email
+          <Mail className="size-4 mr-2" /> Email Pengingat
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href={`/dashboard/invoices/${id}/delete`}>
-            <Trash className="size-4 mr-2" /> Delete Invoice
+            <Trash className="size-4 mr-2" /> Hapus Faktur
           </Link>
         </DropdownMenuItem>
         {status !== "PAID" && (
           <DropdownMenuItem asChild>
             <Link href={`/dashboard/invoices/${id}/paid`}>
-              <CheckCircle className="size-4 mr-2" /> Mark as Paid
+              <CheckCircle className="size-4 mr-2" /> Tandai Lunas
             </Link>
           </DropdownMenuItem>
         )}

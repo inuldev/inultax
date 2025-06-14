@@ -9,13 +9,13 @@ import { cn } from "@/lib/utils";
 export const dashboardLinks = [
   {
     id: 0,
-    name: "Dashboard",
+    name: "Dasbor",
     href: "/dashboard",
     icon: HomeIcon,
   },
   {
     id: 1,
-    name: "Invoices",
+    name: "Faktur",
     href: "/dashboard/invoices",
     icon: Users2,
   },

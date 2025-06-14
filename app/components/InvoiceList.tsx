@@ -12,6 +12,18 @@ import prisma from "../utils/db";
 import { requireUser } from "../utils/hooks";
 import { formatCurrency } from "../utils/formatCurrency";
 
+// Utility function untuk menerjemahkan status
+const translateStatus = (status: string) => {
+  switch (status) {
+    case "PAID":
+      return "LUNAS";
+    case "PENDING":
+      return "TERTUNDA";
+    default:
+      return status;
+  }
+};
+
 import { EmptyState } from "./EmptyState";
 import { InvoiceActions } from "./InvoiceActions";
 
@@ -45,21 +57,21 @@ export async function InvoiceList() {
     <>
       {data.length === 0 ? (
         <EmptyState
-          title="No invoices found"
-          description="Create an invoice to get started"
-          buttontext="Create invoice"
+          title="Belum ada faktur"
+          description="Buat faktur untuk memulai"
+          buttontext="Buat Faktur"
           href="/dashboard/invoices/create"
         />
       ) : (
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Invoice ID</TableHead>
-              <TableHead>Customer</TableHead>
-              <TableHead>Amount</TableHead>
+              <TableHead>ID Faktur</TableHead>
+              <TableHead>Pelanggan</TableHead>
+              <TableHead>Jumlah</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+              <TableHead>Tanggal</TableHead>
+              <TableHead className="text-right">Aksi</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -74,7 +86,7 @@ export async function InvoiceList() {
                   })}
                 </TableCell>
                 <TableCell>
-                  <Badge>{invoice.status}</Badge>
+                  <Badge>{translateStatus(invoice.status)}</Badge>
                 </TableCell>
                 <TableCell>
                   {new Intl.DateTimeFormat("id-ID", {

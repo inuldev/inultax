@@ -39,7 +39,10 @@ export async function GET(
   });
 
   if (!data) {
-    return NextResponse.json({ error: "Invoice not found" }, { status: 404 });
+    return NextResponse.json(
+      { error: "Faktur tidak ditemukan" },
+      { status: 404 }
+    );
   }
 
   const pdf = new jsPDF({
@@ -61,7 +64,7 @@ export async function GET(
 
   // From Section dengan text wrapping
   pdf.setFontSize(12);
-  pdf.text("From", 20, 40);
+  pdf.text("Dari", 20, 40);
   pdf.setFontSize(10);
 
   // Handle long address with text wrapping
@@ -78,7 +81,7 @@ export async function GET(
   // Client Section dengan text wrapping
   const clientSectionY = 40 + fromSectionHeight + SECTION_SPACING;
   pdf.setFontSize(12);
-  pdf.text("Bill to", 20, clientSectionY);
+  pdf.text("Kepada", 20, clientSectionY);
   pdf.setFontSize(10);
 
   // Handle long client address with text wrapping
@@ -99,15 +102,15 @@ export async function GET(
 
   // Invoice details (kanan atas)
   pdf.setFontSize(10);
-  pdf.text(`Invoice Number: #${data.invoiceNumber}`, 120, 40);
+  pdf.text(`No. Faktur: #${data.invoiceNumber}`, 120, 40);
   pdf.text(
-    `Date: ${new Intl.DateTimeFormat("id-ID", {
+    `Tanggal: ${new Intl.DateTimeFormat("id-ID", {
       dateStyle: "long",
     }).format(data.date)}`,
     120,
     45
   );
-  pdf.text(`Due Date: Net ${data.dueDate}`, 120, 50);
+  pdf.text(`Jatuh Tempo: ${data.dueDate} hari`, 120, 50);
 
   // Hitung posisi table berdasarkan tinggi client section
   const clientSectionHeight = clientLines.length * LINE_HEIGHT;
@@ -119,9 +122,9 @@ export async function GET(
   // Item table header
   pdf.setFontSize(10);
   pdf.setFont("helvetica", "bold");
-  pdf.text("Description", 20, tableStartY);
-  pdf.text("Quantity", 100, tableStartY);
-  pdf.text("Rate", 130, tableStartY);
+  pdf.text("Deskripsi", 20, tableStartY);
+  pdf.text("Kuantitas", 100, tableStartY);
+  pdf.text("Harga", 130, tableStartY);
   pdf.text("Total", 160, tableStartY);
 
   // draw header line
@@ -182,7 +185,7 @@ export async function GET(
     const noteY = totalSectionY + 30; // spacing dari total section
     pdf.setFont("helvetica", "normal");
     pdf.setFontSize(10);
-    pdf.text("Note:", 20, noteY);
+    pdf.text("Catatan:", 20, noteY);
 
     // Handle long note with text wrapping dan line height konsisten
     const maxNoteWidth = 170; // mm, lebar maksimum untuk note

@@ -79,9 +79,9 @@ export async function InvoiceGraph() {
   return (
     <Card className="lg:col-span-2">
       <CardHeader>
-        <CardTitle>Paid Invoices</CardTitle>
+        <CardTitle>Faktur Lunas</CardTitle>
         <CardDescription>
-          Invoices which have been paid in the last 30 days.
+          Faktur yang telah dibayar dalam 30 hari terakhir.
         </CardDescription>
       </CardHeader>
       <CardContent>

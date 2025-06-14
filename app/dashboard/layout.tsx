@@ -106,10 +106,10 @@ export default async function DashboardLayout({
                   <DropdownMenuLabel>Akun Saya</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard">Dashboard</Link>
+                    <Link href="/dashboard">Dashbor</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard/invoices">Invoices</Link>
+                    <Link href="/dashboard/invoices">Faktur</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>

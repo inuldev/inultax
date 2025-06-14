@@ -98,14 +98,16 @@ export async function DashboardBlocks() {
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 md:gap-8">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+          <CardTitle className="text-sm font-medium">
+            Total Pendapatan
+          </CardTitle>
           <Wallet className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <h2 className="text-2xl font-bold mb-2">+{totalCount}</h2>
           <CurrencyTotals totals={totalsByCurrency} />
           <p className="text-xs text-muted-foreground">
-            Based on total volume by currency
+            Berdasarkan total volume berdasarkan mata uang.
           </p>
         </CardContent>
       </Card>
@@ -113,44 +115,42 @@ export async function DashboardBlocks() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">
-            Total Invoices Issued
+            Total Faktur Diterbitkan
           </CardTitle>
           <Users className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <h2 className="text-2xl font-bold">+{totalInvoices.length}</h2>
           <p className="text-xs text-muted-foreground">
-            Total invoices issued by you
+            Total faktur yang telah Anda terbitkan.
           </p>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Paid Invoices</CardTitle>
+          <CardTitle className="text-sm font-medium">Faktur Lunas</CardTitle>
           <CreditCard className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <h2 className="text-2xl font-bold mb-2">+{paidCount}</h2>
           <CurrencyTotals totals={paidTotalsByCurrency} />
           <p className="text-xs text-muted-foreground">
-            Invoices which have been paid!
+            Faktur yang telah dibayar!
           </p>
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">
-            Pending Invoices
-          </CardTitle>
+          <CardTitle className="text-sm font-medium">Faktur Tertunda</CardTitle>
           <Activity className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
           <h2 className="text-2xl font-bold mb-2">+{pendingCount}</h2>
           <CurrencyTotals totals={pendingTotalsByCurrency} />
           <p className="text-xs text-muted-foreground">
-            Invoices which currently pending!
+            Faktur yang masih tertunda!
           </p>
         </CardContent>
       </Card>

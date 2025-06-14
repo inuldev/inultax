@@ -42,9 +42,9 @@ export default async function MarkAsPaid({ params }: { params: Params }) {
     <div className="flex flex-1 justify-center items-center">
       <Card className="max-w-[500px]">
         <CardHeader>
-          <CardTitle>Mark as Paid?</CardTitle>
+          <CardTitle>Tandai Sebagai Lunas?</CardTitle>
           <CardDescription>
-            Are you sure you want to mark this invoice as paid?
+            Apakah Anda yakin ingin menandai faktur ini sebagai lunas?
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -55,7 +55,7 @@ export default async function MarkAsPaid({ params }: { params: Params }) {
             className={buttonVariants({ variant: "outline" })}
             href="/dashboard/invoices"
           >
-            Cancel
+            Batal
           </Link>
           <form
             action={async () => {
@@ -63,7 +63,7 @@ export default async function MarkAsPaid({ params }: { params: Params }) {
               await MarkAsPaidAction(invoiceId);
             }}
           >
-            <SubmitButton text="Mark as Paid!" />
+            <SubmitButton text="Tandai Lunas!" />
           </form>
         </CardFooter>
       </Card>

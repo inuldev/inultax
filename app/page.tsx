@@ -39,7 +39,7 @@ export default async function Home() {
               href="/dashboard"
               className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
-              Dashboard
+              Dashbor
               <ArrowRight className="w-4 h-4" />
             </Link>
           ) : (
