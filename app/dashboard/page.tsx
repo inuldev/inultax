@@ -1,23 +1,50 @@
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
-import { signOut } from "../utils/auth";
+import prisma from "../utils/db";
 import { requireUser } from "../utils/hooks";
+import { Skeleton } from "@/components/ui/skeleton";
+import { EmptyState } from "../components/EmptyState";
+import { InvoiceGraph } from "../components/InvoiceGraph";
+import { RecentInvoices } from "../components/RecentInvoices";
+import { DashboardBlocks } from "../components/DashboardBlocks";
+
+async function getData(userId: string) {
+  const data = await prisma.invoice.findMany({
+    where: {
+      userId: userId,
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  return data;
+}
 
 export default async function DashboardRoute() {
   const session = await requireUser();
+  const data = await getData(session.user?.id as string);
 
   return (
     <>
-      <h1>Halo, {session.user?.email}</h1>
-      <form
-        action={async () => {
-          "use server";
-          await signOut();
-          redirect("/");
-        }}
-      >
-        <button type="submit">Keluar</button>
-      </form>
+      {data.length < 1 ? (
+        <EmptyState
+          title="No invoices found"
+          description="Create an invoice to see it right here"
+          buttontext="Create Invoice"
+          href="/dashboard/invoices/create"
+        />
+      ) : (
+        <Suspense fallback={<Skeleton className="w-full h-full flex-1" />}>
+          <div className="flex flex-col gap-4 md:gap-8">
+            <DashboardBlocks />
+            <div className="grid gap-4 md:gap-8 grid-cols-1 lg:grid-cols-3">
+              <InvoiceGraph />
+              <RecentInvoices />
+            </div>
+          </div>
+        </Suspense>
+      )}
     </>
   );
 }
