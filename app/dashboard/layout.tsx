@@ -4,7 +4,6 @@ import { ReactNode } from "react";
 import { Menu, User2 } from "lucide-react";
 import { redirect } from "next/navigation";
 
-import Logo from "@/public/logo.png";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import {
@@ -55,10 +54,16 @@ export default async function DashboardLayout({
           <div className="flex flex-col max-h-screen h-full gap-2">
             <div className="h-14 flex items-center border-b px-4 lg:h-[60px] lg:px-6">
               <Link href="/" className="flex items-center gap-2">
-                <Image src={Logo} alt="Logo" className="size-7" priority />
-                <p className="text-2xl font-bold">
-                  Inul<span className="text-blue-500">Tax</span>
-                </p>
+                <Image
+                  src="/logo.svg"
+                  alt="InulTax Logo"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8"
+                />
+                <span className="text-2xl font-bold text-gray-900">
+                  Inul<span className="text-blue-600">Tax</span>
+                </span>
               </Link>
             </div>
             <div className="flex-1">
