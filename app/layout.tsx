@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "InulTax",
   description: "Aplikasi invoice terbaik untuk kebutuhan bisnis Anda",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
