@@ -18,7 +18,9 @@ export const invoiceSchema = z.object({
   clientName: z.string().min(1, "Client name is required"),
   clientEmail: z.string().email("Invalid Email address"),
   clientAddress: z.string().min(1, "Client address is required"),
-  currency: z.string().min(1, "Currency is required"),
+  currency: z.enum(["USD", "IDR"], {
+    errorMap: () => ({ message: "Currency must be USD or IDR" }),
+  }),
   invoiceNumber: z.number().min(1, "Minimum invoice number of 1"),
   note: z.string().optional(),
   invoiceItemDescription: z.string().min(1, "Description is required"),
