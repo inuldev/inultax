@@ -74,7 +74,7 @@ export async function GET(
   pdf.setTextColor(255, 255, 255); // White text
   pdf.setFontSize(10);
   pdf.setFont("helvetica", "bold");
-  pdf.text("INVOICE", 165, 13);
+  pdf.text("INVOICE", 170, 13, { align: "center" });
 
   // Reset text color untuk content
   pdf.setTextColor(52, 73, 94); // Dark gray text
@@ -162,7 +162,7 @@ export async function GET(
   pdf.setTextColor(255, 255, 255); // White text
   pdf.text("DESKRIPSI", 20, tableStartY);
   pdf.text("QTY", 105, tableStartY);
-  pdf.text("HARGA", 130, tableStartY);
+  pdf.text("BIAYA", 130, tableStartY);
   pdf.text("TOTAL", 165, tableStartY);
 
   // Reset text color untuk content
@@ -220,16 +220,14 @@ export async function GET(
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(12);
   pdf.setTextColor(255, 255, 255); // White text
-  pdf.text(`TOTAL (${data.currency})`, 125, totalSectionY + 6);
-  pdf.setFontSize(14);
-  pdf.text(
-    formatCurrency({
-      amount: data.total,
-      currency: data.currency as "USD" | "IDR",
-    }),
-    125,
-    totalSectionY + 12
-  );
+
+  // Tampilkan label dan nilai dalam satu baris
+  const totalText = `TOTAL (${data.currency}): ${formatCurrency({
+    amount: data.total,
+    currency: data.currency as "USD" | "IDR",
+  })}`;
+
+  pdf.text(totalText, 125, totalSectionY + 9);
 
   // Reset text color
   pdf.setTextColor(52, 73, 94);
