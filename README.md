@@ -2,6 +2,10 @@
 
 **InulTax** adalah platform invoice management berbasis web yang dibangun dengan teknologi modern untuk membantu bisnis Indonesia mengelola faktur dengan mudah, cepat, dan profesional.
 
+<div align="center">
+  <img src="./public/thumbnail.png" alt="InulTax Thumbnail" width="600" />
+</div>
+
 ![InulTax Banner](https://img.shields.io/badge/InulTax-Invoice%20Management-blue?style=for-the-badge)
 ![Next.js](https://img.shields.io/badge/Next.js-15.3.3-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
