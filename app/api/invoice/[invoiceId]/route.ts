@@ -60,7 +60,7 @@ export async function GET(
 
   // Modern Header dengan background
   pdf.setFillColor(41, 128, 185); // Blue background
-  pdf.rect(0, 0, 210, 35, "I"); // Header background
+  pdf.rect(0, 0, 210, 35, "F"); // Header background
 
   // Company/Invoice name
   pdf.setTextColor(255, 255, 255); // White text
@@ -70,7 +70,7 @@ export async function GET(
 
   // Invoice status badge
   pdf.setFillColor(46, 204, 113); // Green badge
-  pdf.roundedRect(150, 8, 40, 8, 2, 2, "I");
+  pdf.rect(150, 8, 40, 8, "F");
   pdf.setTextColor(255, 255, 255); // White text
   pdf.setFontSize(10);
   pdf.setFont("helvetica", "bold");
@@ -82,7 +82,7 @@ export async function GET(
   // From Section dengan modern box styling
   const fromBoxY = 45;
   pdf.setFillColor(236, 240, 241); // Light gray background
-  pdf.roundedRect(15, fromBoxY, 85, 35, 3, 3, "I");
+  pdf.rect(15, fromBoxY, 85, 35, "F");
 
   pdf.setFontSize(12);
   pdf.setFont("helvetica", "bold");
@@ -105,7 +105,7 @@ export async function GET(
   // Client Section dengan modern box styling
   const clientBoxY = 45;
   pdf.setFillColor(236, 240, 241); // Light gray background
-  pdf.roundedRect(110, clientBoxY, 85, 35, 3, 3, "I");
+  pdf.rect(110, clientBoxY, 85, 35, "F");
 
   pdf.setFontSize(12);
   pdf.setFont("helvetica", "bold");
@@ -135,7 +135,7 @@ export async function GET(
   // Invoice details dengan modern styling (kanan atas)
   pdf.setFillColor(255, 255, 255); // White background
   pdf.setDrawColor(41, 128, 185); // Blue border
-  pdf.roundedRect(110, 20, 85, 20, 3, 3, "IT");
+  pdf.rect(110, 20, 85, 20, "FD");
 
   pdf.setFontSize(9);
   pdf.setFont("helvetica", "normal");
@@ -155,7 +155,7 @@ export async function GET(
 
   // Table header dengan background
   pdf.setFillColor(41, 128, 185); // Blue background
-  pdf.rect(15, tableStartY - 5, 180, 12, "I");
+  pdf.rect(15, tableStartY - 5, 180, 12, "F");
 
   pdf.setFontSize(11);
   pdf.setFont("helvetica", "bold");
@@ -174,7 +174,7 @@ export async function GET(
 
   // Item row background
   pdf.setFillColor(248, 249, 250); // Very light gray
-  pdf.rect(15, itemRowY - 3, 180, 20, "I");
+  pdf.rect(15, itemRowY - 3, 180, 20, "F");
 
   // Handle long description with text wrapping
   const maxDescriptionWidth = 75; // mm
@@ -215,7 +215,7 @@ export async function GET(
 
   // Total box dengan accent color
   pdf.setFillColor(46, 204, 113); // Green background
-  pdf.roundedRect(120, totalSectionY, 75, 15, 3, 3, "I");
+  pdf.rect(120, totalSectionY, 75, 15, "F");
 
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(12);
@@ -241,7 +241,7 @@ export async function GET(
     // Note box dengan border
     pdf.setDrawColor(41, 128, 185); // Blue border
     pdf.setFillColor(248, 249, 250); // Light background
-    pdf.roundedRect(15, noteY, 180, 25, 3, 3, "IT");
+    pdf.rect(15, noteY, 180, 25, "FD");
 
     pdf.setFont("helvetica", "bold");
     pdf.setFontSize(10);
