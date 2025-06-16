@@ -30,6 +30,11 @@ import { SubmitButton } from "./SubmitButtons";
 import { createInvoice } from "../actions";
 import { invoiceSchema } from "../utils/zodSchemas";
 import { formatCurrency } from "../utils/formatCurrency";
+import {
+  toIndonesiaISOString,
+  formatIndonesiaDate,
+  getTodayInIndonesia,
+} from "../utils/dateUtils";
 
 interface InvoiceItem {
   description: string;
@@ -98,7 +103,7 @@ export function CreateInvoice({
   });
 
   const [currency, setCurrency] = useState("IDR");
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(getTodayInIndonesia());
   const [items, setItems] = useState<InvoiceItem[]>([
     { description: "", quantity: "1", rate: "0" },
   ]);
@@ -116,7 +121,7 @@ export function CreateInvoice({
           <input
             type="hidden"
             name={fields.date.name}
-            value={selectedDate.toISOString()}
+            value={toIndonesiaISOString(selectedDate)}
           />
 
           <input
@@ -260,9 +265,7 @@ export function CreateInvoice({
                   >
                     <CalendarIcon />
                     {selectedDate ? (
-                      new Intl.DateTimeFormat("id-ID", {
-                        dateStyle: "long",
-                      }).format(selectedDate)
+                      formatIndonesiaDate(selectedDate)
                     ) : (
                       <span>Pilih Tanggal</span>
                     )}
@@ -271,9 +274,11 @@ export function CreateInvoice({
                 <PopoverContent>
                   <Calendar
                     selected={selectedDate}
-                    onSelect={(date) => setSelectedDate(date || new Date())}
+                    onSelect={(date) =>
+                      setSelectedDate(date || getTodayInIndonesia())
+                    }
                     mode="single"
-                    // fromDate={new Date()}
+                    // fromDate={getTodayInIndonesia()}
                   />
                 </PopoverContent>
               </Popover>

@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import prisma from "../utils/db";
 import { requireUser } from "../utils/hooks";
 import { formatCurrency } from "../utils/formatCurrency";
+import { formatIndonesiaDateMedium } from "../utils/dateUtils";
 
 // Utility function untuk menerjemahkan status
 const translateStatus = (status: string) => {
@@ -89,9 +90,7 @@ export async function InvoiceList() {
                   <Badge>{translateStatus(invoice.status)}</Badge>
                 </TableCell>
                 <TableCell>
-                  {new Intl.DateTimeFormat("id-ID", {
-                    dateStyle: "medium",
-                  }).format(invoice.createdAt)}
+                  {formatIndonesiaDateMedium(invoice.createdAt)}
                 </TableCell>
                 <TableCell className="text-right">
                   <InvoiceActions status={invoice.status} id={invoice.id} />

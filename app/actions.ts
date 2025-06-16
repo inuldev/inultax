@@ -6,6 +6,7 @@ import { parseWithZod } from "@conform-to/zod";
 import prisma from "./utils/db";
 import { requireUser } from "./utils/hooks";
 import { formatCurrency } from "./utils/formatCurrency";
+import { formatIndonesiaDate } from "./utils/dateUtils";
 import { onboardingSchema, invoiceSchema } from "./utils/zodSchemas";
 import {
   sendCreateInvoiceEmail,
@@ -124,9 +125,7 @@ export async function createInvoice(_prevState: unknown, formData: FormData) {
       to: submission.value.clientEmail,
       clientName: submission.value.clientName,
       invoiceNumber: submission.value.invoiceNumber.toString(),
-      invoiceDueDate: new Intl.DateTimeFormat("id-ID", {
-        dateStyle: "long",
-      }).format(new Date(submission.value.date)),
+      invoiceDueDate: formatIndonesiaDate(submission.value.date),
       invoiceAmount: formatCurrency({
         amount: submission.value.total,
         currency: submission.value.currency,
@@ -214,9 +213,7 @@ export async function editInvoice(_prevState: unknown, formData: FormData) {
       to: submission.value.clientEmail,
       clientName: submission.value.clientName,
       invoiceNumber: submission.value.invoiceNumber.toString(),
-      invoiceDueDate: new Intl.DateTimeFormat("id-ID", {
-        dateStyle: "long",
-      }).format(new Date(submission.value.date)),
+      invoiceDueDate: formatIndonesiaDate(submission.value.date),
       invoiceAmount: formatCurrency({
         amount: submission.value.total,
         currency: submission.value.currency,

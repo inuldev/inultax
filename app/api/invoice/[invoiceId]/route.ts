@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import prisma from "@/app/utils/db";
 import { formatCurrency } from "@/app/utils/formatCurrency";
+import { formatIndonesiaDate } from "@/app/utils/dateUtils";
 
 export async function GET(
   _request: Request,
@@ -145,13 +146,7 @@ export async function GET(
   pdf.setFont("helvetica", "normal");
   pdf.setTextColor(52, 73, 94);
   pdf.text(`No. Faktur: #${data.invoiceNumber}`, 115, 26);
-  pdf.text(
-    `Tanggal: ${new Intl.DateTimeFormat("id-ID", {
-      dateStyle: "long",
-    }).format(data.date)}`,
-    115,
-    30
-  );
+  pdf.text(`Tanggal: ${formatIndonesiaDate(data.date)}`, 115, 30);
   pdf.text(`Jatuh Tempo: ${data.dueDate} hari`, 115, 34);
 
   // Modern Table dengan styling

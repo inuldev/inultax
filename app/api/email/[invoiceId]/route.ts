@@ -4,6 +4,7 @@ import prisma from "@/app/utils/db";
 import { requireUser } from "@/app/utils/hooks";
 import { sendReminderEmail } from "@/app/utils/nodemailer";
 import { formatCurrency } from "@/app/utils/formatCurrency";
+import { formatIndonesiaDate } from "@/app/utils/dateUtils";
 
 export async function POST(
   _request: Request,
@@ -56,9 +57,7 @@ export async function POST(
       to: invoiceData.clientEmail,
       clientName: invoiceData.clientName,
       invoiceNumber: invoiceData.invoiceNumber.toString(),
-      invoiceDueDate: new Intl.DateTimeFormat("id-ID", {
-        dateStyle: "long",
-      }).format(dueDate),
+      invoiceDueDate: formatIndonesiaDate(dueDate),
       invoiceAmount: formatCurrency({
         amount: invoiceData.total,
         currency: invoiceData.currency as "USD" | "IDR",

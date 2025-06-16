@@ -31,6 +31,11 @@ import { editInvoice } from "../actions";
 import { invoiceSchema } from "../utils/zodSchemas";
 import { Prisma } from "../../lib/generated/prisma";
 import { formatCurrency } from "../utils/formatCurrency";
+import {
+  toIndonesiaISOString,
+  formatIndonesiaDate,
+  getTodayInIndonesia,
+} from "../utils/dateUtils";
 
 interface InvoiceItem {
   description: string;
@@ -117,7 +122,7 @@ export function EditInvoice({ data }: iAppProps) {
           <input
             type="hidden"
             name={fields.date.name}
-            value={selectedDate.toISOString()}
+            value={toIndonesiaISOString(selectedDate)}
           />
           <input type="hidden" name="id" value={data.id} />
 
@@ -263,9 +268,7 @@ export function EditInvoice({ data }: iAppProps) {
                   >
                     <CalendarIcon />
                     {selectedDate ? (
-                      new Intl.DateTimeFormat("id-ID", {
-                        dateStyle: "long",
-                      }).format(selectedDate)
+                      formatIndonesiaDate(selectedDate)
                     ) : (
                       <span>Pilih Tanggal</span>
                     )}
@@ -274,9 +277,11 @@ export function EditInvoice({ data }: iAppProps) {
                 <PopoverContent>
                   <Calendar
                     selected={selectedDate}
-                    onSelect={(date) => setSelectedDate(date || new Date())}
+                    onSelect={(date) =>
+                      setSelectedDate(date || getTodayInIndonesia())
+                    }
                     mode="single"
-                    disabled={{ before: new Date() }}
+                    disabled={{ before: getTodayInIndonesia() }}
                   />
                 </PopoverContent>
               </Popover>
