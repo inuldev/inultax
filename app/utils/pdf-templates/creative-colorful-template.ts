@@ -10,13 +10,11 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
     this.pdf.setFillColor(0, 191, 255); // Deep sky blue
     this.pdf.rect(0, 30, 210, 10, "F");
 
-    // Creative company name dengan shadow effect
+    // Creative company name
     this.pdf.setTextColor(255, 255, 255);
     this.pdf.setFontSize(28);
     this.pdf.setFont("helvetica", "bold");
-    this.pdf.text(this.data.invoiceName, 22, 27); // Shadow
-    this.pdf.setTextColor(255, 255, 255);
-    this.pdf.text(this.data.invoiceName, 20, 25); // Main text
+    this.pdf.text(this.data.invoiceName, 20, 25);
 
     // Creative invoice badge
     this.pdf.setFillColor(255, 20, 147); // Deep pink
@@ -138,21 +136,21 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
 
     // Rainbow table header
     this.pdf.setFillColor(255, 99, 71); // Tomato
-    this.pdf.rect(15, tableStartY - 5, 45, 12, "F");
+    this.pdf.rect(15, tableStartY - 5, 85, 12, "F"); // Description column wider
     this.pdf.setFillColor(255, 215, 0); // Gold
-    this.pdf.rect(60, tableStartY - 5, 45, 12, "F");
+    this.pdf.rect(100, tableStartY - 5, 25, 12, "F"); // QTY column
     this.pdf.setFillColor(50, 205, 50); // Lime green
-    this.pdf.rect(105, tableStartY - 5, 45, 12, "F");
+    this.pdf.rect(125, tableStartY - 5, 35, 12, "F"); // Rate column
     this.pdf.setFillColor(30, 144, 255); // Dodger blue
-    this.pdf.rect(150, tableStartY - 5, 45, 12, "F");
+    this.pdf.rect(160, tableStartY - 5, 35, 12, "F"); // Total column
 
     this.pdf.setFontSize(10);
     this.pdf.setFont("helvetica", "bold");
     this.pdf.setTextColor(255, 255, 255);
     this.pdf.text("DESCRIPTION", 20, tableStartY);
-    this.pdf.text("QTY", 65, tableStartY);
-    this.pdf.text("RATE", 110, tableStartY);
-    this.pdf.text("TOTAL", 155, tableStartY);
+    this.pdf.text("QTY", 105, tableStartY);
+    this.pdf.text("RATE", 130, tableStartY);
+    this.pdf.text("TOTAL", 165, tableStartY);
 
     this.pdf.setTextColor(0, 0, 0);
     this.pdf.setFont("helvetica", "normal");
@@ -171,7 +169,7 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
       const colorIndex = index % itemColors.length;
       this.pdf.setFillColor(...itemColors[colorIndex]);
 
-      const maxDescriptionWidth = 75;
+      const maxDescriptionWidth = 70; // Lebih konservatif untuk menghindari overlap
       const descriptionLines = this.wrapText(
         item.description,
         maxDescriptionWidth
@@ -190,14 +188,14 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
 
       this.pdf.setFontSize(9);
       this.pdf.text(descriptionLines, 20, currentY + 2);
-      this.pdf.text(item.quantity.toString(), 65, currentY + 2);
-      this.pdf.text(this.formatCurrency(item.rate), 110, currentY + 2);
+      this.pdf.text(item.quantity.toString(), 105, currentY + 2);
+      this.pdf.text(this.formatCurrency(item.rate), 130, currentY + 2);
 
       this.pdf.setFont("helvetica", "bold");
       this.pdf.setTextColor(255, 20, 147); // Deep pink
       this.pdf.text(
         this.formatCurrency(item.quantity * item.rate),
-        155,
+        165,
         currentY + 2
       );
       this.pdf.setFont("helvetica", "normal");
@@ -211,32 +209,29 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
     const totalSectionY =
       130 + 10 + this.data.items.length * 20 + this.SECTION_SPACING;
 
-    // Creative total dengan gradient effect
+    // Creative total dengan gradient effect - lebih compact
     this.pdf.setFillColor(255, 20, 147); // Deep pink
-    this.pdf.rect(100, totalSectionY, 95, 20, "F");
+    this.pdf.rect(100, totalSectionY, 95, 15, "F");
 
     // Decorative elements
     this.pdf.setFillColor(255, 215, 0); // Gold accent
-    this.pdf.rect(100, totalSectionY, 95, 3, "F");
-    this.pdf.rect(100, totalSectionY + 17, 95, 3, "F");
+    this.pdf.rect(100, totalSectionY, 95, 2, "F");
+    this.pdf.rect(100, totalSectionY + 13, 95, 2, "F");
 
     this.pdf.setFont("helvetica", "bold");
-    this.pdf.setFontSize(14);
+    this.pdf.setFontSize(12);
     this.pdf.setTextColor(255, 255, 255);
-    this.pdf.text("GRAND TOTAL", 105, totalSectionY + 8);
-    this.pdf.setFontSize(16);
-    this.pdf.text(
-      this.formatCurrency(this.data.total),
-      105,
-      totalSectionY + 15
-    );
+
+    // Gabung GRAND TOTAL dan nilai dalam 1 baris
+    const totalText = `GRAND TOTAL: ${this.formatCurrency(this.data.total)}`;
+    this.pdf.text(totalText, 105, totalSectionY + 9);
   }
 
   renderNote(): void {
     if (!this.data.note) return;
 
     const noteY =
-      130 + 10 + this.data.items.length * 20 + this.SECTION_SPACING + 35;
+      130 + 10 + this.data.items.length * 20 + this.SECTION_SPACING + 25;
 
     // Creative note box dengan pattern
     this.pdf.setFillColor(255, 248, 220); // Cornsilk
