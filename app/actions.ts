@@ -108,6 +108,7 @@ export async function createInvoice(_prevState: unknown, formData: FormData) {
       status: submission.value.status,
       total: submission.value.total,
       note: submission.value.note,
+      pdfTemplate: submission.value.pdfTemplate,
       userId: session.user?.id,
       items: {
         create: items.map((item: FormInvoiceItem) => ({
@@ -197,6 +198,7 @@ export async function editInvoice(_prevState: unknown, formData: FormData) {
       status: submission.value.status,
       total: submission.value.total,
       note: submission.value.note,
+      pdfTemplate: submission.value.pdfTemplate,
       items: {
         create: items.map((item: FormInvoiceItem) => ({
           description: item.description,

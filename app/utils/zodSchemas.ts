@@ -29,5 +29,13 @@ export const invoiceSchema = z.object({
   }),
   invoiceNumber: z.number().min(1, "Nomor faktur minimal 1"),
   note: z.string().optional(),
+  pdfTemplate: z
+    .enum([
+      "MODERN_BLUE",
+      "CLASSIC_MINIMAL",
+      "PROFESSIONAL_DARK",
+      "CREATIVE_COLORFUL",
+    ])
+    .default("MODERN_BLUE"),
   items: z.array(invoiceItemSchema).min(1, "Minimal harus ada 1 item"),
 });

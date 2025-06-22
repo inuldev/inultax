@@ -1,9 +1,9 @@
 "use client";
 
 import { useForm } from "@conform-to/react";
-import { CalendarIcon, PlusIcon, TrashIcon } from "lucide-react";
 import { parseWithZod } from "@conform-to/zod";
 import { useActionState, useState } from "react";
+import { CalendarIcon, PlusIcon, TrashIcon } from "lucide-react";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -26,11 +26,13 @@ import {
 } from "@/components/ui/select";
 
 import { SubmitButton } from "./SubmitButtons";
+import { TemplateSelector } from "./TemplateSelector";
 
 import { editInvoice } from "../actions";
 import { invoiceSchema } from "../utils/zodSchemas";
 import { Prisma } from "../../lib/generated/prisma";
 import { formatCurrency } from "../utils/formatCurrency";
+import { PdfTemplateType } from "../utils/pdf-templates/template-factory";
 import {
   toIndonesiaISOString,
   formatIndonesiaDate,
@@ -101,6 +103,9 @@ export function EditInvoice({ data }: iAppProps) {
 
   const [selectedDate, setSelectedDate] = useState(data.date);
   const [currency, setCurrency] = useState(data.currency);
+  const [selectedTemplate, setSelectedTemplate] = useState<PdfTemplateType>(
+    (data.pdfTemplate as PdfTemplateType) || "MODERN_BLUE"
+  );
   const [items, setItems] = useState<InvoiceItem[]>(
     data.items.map((item) => ({
       description: item.description,
@@ -133,6 +138,11 @@ export function EditInvoice({ data }: iAppProps) {
           />
 
           <input type="hidden" name="items" value={JSON.stringify(items)} />
+          <input
+            type="hidden"
+            name={fields.pdfTemplate.name}
+            value={selectedTemplate}
+          />
 
           <div className="flex flex-col gap-1 w-fit mb-6">
             <div className="flex items-center gap-4">
@@ -422,6 +432,13 @@ export function EditInvoice({ data }: iAppProps) {
                 </span>
               </div>
             </div>
+          </div>
+
+          <div className="mb-6">
+            <TemplateSelector
+              selectedTemplate={selectedTemplate}
+              onTemplateChange={setSelectedTemplate}
+            />
           </div>
 
           <div>

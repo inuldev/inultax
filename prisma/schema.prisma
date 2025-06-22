@@ -86,6 +86,13 @@ enum InvoiceStatus {
   PENDING
 }
 
+enum PdfTemplate {
+  MODERN_BLUE // Template saat ini
+  CLASSIC_MINIMAL
+  PROFESSIONAL_DARK
+  CREATIVE_COLORFUL
+}
+
 model Invoice {
   id String @id @default(uuid())
 
@@ -103,6 +110,7 @@ model Invoice {
   currency      String
   invoiceNumber Int
   note          String?
+  pdfTemplate   PdfTemplate   @default(MODERN_BLUE)
 
   items InvoiceItem[]
 

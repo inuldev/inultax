@@ -26,10 +26,12 @@ import {
 } from "@/components/ui/popover";
 
 import { SubmitButton } from "./SubmitButtons";
+import { TemplateSelector } from "./TemplateSelector";
 
 import { createInvoice } from "../actions";
 import { invoiceSchema } from "../utils/zodSchemas";
 import { formatCurrency } from "../utils/formatCurrency";
+import { PdfTemplateType } from "../utils/pdf-templates/template-factory";
 import {
   toIndonesiaISOString,
   formatIndonesiaDate,
@@ -104,6 +106,8 @@ export function CreateInvoice({
 
   const [currency, setCurrency] = useState("IDR");
   const [selectedDate, setSelectedDate] = useState(getTodayInIndonesia());
+  const [selectedTemplate, setSelectedTemplate] =
+    useState<PdfTemplateType>("MODERN_BLUE");
   const [items, setItems] = useState<InvoiceItem[]>([
     { description: "", quantity: "1", rate: "0" },
   ]);
@@ -131,6 +135,11 @@ export function CreateInvoice({
           />
 
           <input type="hidden" name="items" value={JSON.stringify(items)} />
+          <input
+            type="hidden"
+            name={fields.pdfTemplate.name}
+            value={selectedTemplate}
+          />
 
           <div className="flex flex-col gap-1 w-fit mb-6">
             <div className="flex items-center gap-4">
@@ -419,6 +428,13 @@ export function CreateInvoice({
                 </span>
               </div>
             </div>
+          </div>
+
+          <div className="mb-6">
+            <TemplateSelector
+              selectedTemplate={selectedTemplate}
+              onTemplateChange={setSelectedTemplate}
+            />
           </div>
 
           <div>
