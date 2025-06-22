@@ -1,5 +1,5 @@
-import { BasePdfTemplate, InvoiceData } from "./base-template";
 import { ModernBlueTemplate } from "./modern-blue-template";
+import { BasePdfTemplate, InvoiceData } from "./base-template";
 import { ClassicMinimalTemplate } from "./classic-minimal-template";
 import { ProfessionalDarkTemplate } from "./professional-dark-template";
 import { CreativeColorfulTemplate } from "./creative-colorful-template";
@@ -63,10 +63,10 @@ export const AVAILABLE_TEMPLATES: TemplateInfo[] = [
       "Template kreatif dengan warna-warna cerah dan elemen visual menarik",
     preview: "/templates/creative-colorful-preview.png",
     features: [
-      "Rainbow colors",
-      "Creative elements",
-      "Emoji icons",
-      "Fun design",
+      "Colorful design",
+      "Creative layout",
+      "Fun elements",
+      "Modern style",
     ],
   },
 ];

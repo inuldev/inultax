@@ -1,18 +1,9 @@
 "use client";
 
-import { Check, Eye } from "lucide-react";
+import { Check } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Card, CardContent } from "@/components/ui/card";
 
 import {
   AVAILABLE_TEMPLATES,
@@ -50,7 +41,7 @@ export function TemplateSelector({
             }`}
             onClick={() => onTemplateChange(template.id)}
           >
-            <CardContent className="p-4">
+            <CardContent className="p-4 h-full">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
@@ -65,93 +56,19 @@ export function TemplateSelector({
                 </div>
               </div>
 
-              {/* Preview Image Placeholder */}
-              <div className="relative mb-3 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-32 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-2xl mb-1">📄</div>
-                  <div className="text-xs text-gray-600">Preview</div>
-                </div>
-              </div>
-
               {/* Features */}
-              <div className="flex flex-wrap gap-1 mb-3">
-                {template.features.slice(0, 2).map((feature, index) => (
+              <div className="flex flex-wrap gap-1">
+                {template.features.slice(0, 3).map((feature, index) => (
                   <Badge key={index} variant="secondary" className="text-xs">
                     {feature}
                   </Badge>
                 ))}
-                {template.features.length > 2 && (
+                {template.features.length > 3 && (
                   <Badge variant="outline" className="text-xs">
-                    +{template.features.length - 2} lainnya
+                    +{template.features.length - 3} lainnya
                   </Badge>
                 )}
               </div>
-
-              {/* Preview Button */}
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                  >
-                    <Eye className="h-4 w-4 mr-2" />
-                    Lihat Detail
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl">
-                  <DialogHeader>
-                    <DialogTitle>{template.name}</DialogTitle>
-                    <DialogDescription>
-                      {template.description}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="space-y-4">
-                    {/* Large Preview */}
-                    <div className="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-64 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-6xl mb-2">📄</div>
-                        <div className="text-sm text-gray-600">
-                          Preview {template.name}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* All Features */}
-                    <div>
-                      <h4 className="font-semibold mb-2">Fitur Template:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {template.features.map((feature, index) => (
-                          <Badge key={index} variant="secondary">
-                            {feature}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Select Button */}
-                    <Button
-                      className="w-full"
-                      onClick={() => {
-                        onTemplateChange(template.id);
-                      }}
-                      disabled={selectedTemplate === template.id}
-                    >
-                      {selectedTemplate === template.id ? (
-                        <>
-                          <Check className="h-4 w-4 mr-2" />
-                          Template Terpilih
-                        </>
-                      ) : (
-                        "Pilih Template Ini"
-                      )}
-                    </Button>
-                  </div>
-                </DialogContent>
-              </Dialog>
             </CardContent>
           </Card>
         ))}

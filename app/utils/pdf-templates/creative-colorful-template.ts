@@ -24,7 +24,7 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
     this.pdf.setTextColor(255, 255, 255);
     this.pdf.setFontSize(12);
     this.pdf.setFont("helvetica", "bold");
-    this.pdf.text("✨ INVOICE ✨", 167, 17, { align: "center" });
+    this.pdf.text("INVOICE", 167, 17, { align: "center" });
   }
 
   renderFromSection(): void {
@@ -42,7 +42,7 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
     this.pdf.setFontSize(12);
     this.pdf.setFont("helvetica", "bold");
     this.pdf.setTextColor(138, 43, 226); // Purple
-    this.pdf.text("💼 FROM", 20, fromBoxY + 8);
+    this.pdf.text("FROM", 20, fromBoxY + 8);
 
     this.pdf.setFontSize(9);
     this.pdf.setFont("helvetica", "normal");
@@ -76,7 +76,7 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
     this.pdf.setFontSize(12);
     this.pdf.setFont("helvetica", "bold");
     this.pdf.setTextColor(0, 100, 0); // Dark green
-    this.pdf.text("🎯 TO", 115, clientBoxY + 8);
+    this.pdf.text("TO", 115, clientBoxY + 8);
 
     this.pdf.setFontSize(9);
     this.pdf.setFont("helvetica", "normal");
@@ -108,28 +108,28 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
     this.pdf.setTextColor(139, 69, 19); // Saddle brown
     this.pdf.setFontSize(8);
     this.pdf.setFont("helvetica", "bold");
-    this.pdf.text("📄 INVOICE #", 17, detailsY + 5);
+    this.pdf.text("INVOICE #", 17, detailsY + 5);
     this.pdf.text(`${this.data.invoiceNumber}`, 17, detailsY + 10);
 
     // Date box
     this.pdf.setFillColor(144, 238, 144); // Light green
     this.pdf.rect(60, detailsY, 45, 15, "F");
     this.pdf.setTextColor(0, 100, 0); // Dark green
-    this.pdf.text("📅 DATE", 62, detailsY + 5);
+    this.pdf.text("DATE", 62, detailsY + 5);
     this.pdf.text(this.formatDate(this.data.date), 62, detailsY + 10);
 
     // Due date box
     this.pdf.setFillColor(255, 160, 122); // Light salmon
     this.pdf.rect(110, detailsY, 40, 15, "F");
     this.pdf.setTextColor(220, 20, 60); // Crimson
-    this.pdf.text("⏰ DUE", 112, detailsY + 5);
+    this.pdf.text("DUE", 112, detailsY + 5);
     this.pdf.text(`${this.data.dueDate} days`, 112, detailsY + 10);
 
     // Currency box
     this.pdf.setFillColor(221, 160, 221); // Plum
     this.pdf.rect(155, detailsY, 40, 15, "F");
     this.pdf.setTextColor(128, 0, 128); // Purple
-    this.pdf.text("💰 CURRENCY", 157, detailsY + 5);
+    this.pdf.text("CURRENCY", 157, detailsY + 5);
     this.pdf.text(this.data.currency, 157, detailsY + 10);
   }
 
@@ -149,10 +149,10 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
     this.pdf.setFontSize(10);
     this.pdf.setFont("helvetica", "bold");
     this.pdf.setTextColor(255, 255, 255);
-    this.pdf.text("📝 DESCRIPTION", 20, tableStartY);
-    this.pdf.text("🔢 QTY", 65, tableStartY);
-    this.pdf.text("💵 RATE", 110, tableStartY);
-    this.pdf.text("💎 TOTAL", 155, tableStartY);
+    this.pdf.text("DESCRIPTION", 20, tableStartY);
+    this.pdf.text("QTY", 65, tableStartY);
+    this.pdf.text("RATE", 110, tableStartY);
+    this.pdf.text("TOTAL", 155, tableStartY);
 
     this.pdf.setTextColor(0, 0, 0);
     this.pdf.setFont("helvetica", "normal");
@@ -223,7 +223,7 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
     this.pdf.setFont("helvetica", "bold");
     this.pdf.setFontSize(14);
     this.pdf.setTextColor(255, 255, 255);
-    this.pdf.text("🎉 GRAND TOTAL", 105, totalSectionY + 8);
+    this.pdf.text("GRAND TOTAL", 105, totalSectionY + 8);
     this.pdf.setFontSize(16);
     this.pdf.text(
       this.formatCurrency(this.data.total),
@@ -250,7 +250,7 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
     this.pdf.setFont("helvetica", "bold");
     this.pdf.setFontSize(11);
     this.pdf.setTextColor(255, 140, 0); // Dark orange
-    this.pdf.text("📝 SPECIAL NOTES", 20, noteY + 8);
+    this.pdf.text("SPECIAL NOTES", 20, noteY + 8);
 
     const maxNoteWidth = 165;
     const noteLines = this.wrapText(this.data.note, maxNoteWidth);
@@ -285,19 +285,15 @@ export class CreativeColorfulTemplate extends BasePdfTemplate {
     this.pdf.setFontSize(8);
     this.pdf.setFont("helvetica", "normal");
     this.pdf.setTextColor(138, 43, 226); // Purple
+    this.pdf.text("Thank you for your amazing business!", 20, footerY + 10);
     this.pdf.text(
-      "🌟 Thank you for your amazing business! 🌟",
-      20,
-      footerY + 10
-    );
-    this.pdf.text(
-      `✨ Created with love by InulTax - ${new Date().getFullYear()} ✨`,
+      `Created with love by InulTax - ${new Date().getFullYear()}`,
       20,
       footerY + 15
     );
 
     this.pdf.setTextColor(255, 20, 147); // Deep pink
-    this.pdf.text("📧 " + this.data.fromEmail, 120, footerY + 10);
-    this.pdf.text("🤖 Auto-generated with creative flair!", 120, footerY + 15);
+    this.pdf.text("Email: " + this.data.fromEmail, 120, footerY + 10);
+    this.pdf.text("Auto-generated with creative flair!", 120, footerY + 15);
   }
 }
