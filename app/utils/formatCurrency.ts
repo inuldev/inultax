@@ -4,7 +4,10 @@ interface iAppProps {
 }
 
 export function formatCurrency({ amount, currency }: iAppProps) {
-  return new Intl.NumberFormat("id-ID", {
+  // Pilih locale yang sesuai dengan currency
+  const locale = currency === "USD" ? "en-US" : "id-ID";
+
+  return new Intl.NumberFormat(locale, {
     style: "currency",
     currency: currency,
     minimumFractionDigits: 0,
